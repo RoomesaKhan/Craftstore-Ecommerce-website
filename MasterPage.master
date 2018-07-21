@@ -1,0 +1,180 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Craft Store</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+ <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-social.css" rel="stylesheet"/>
+    <link href="css/Footer-with-button-logo.css" rel="stylesheet"/>
+    <link href="css/pic.css" rel="stylesheet" />
+
+    
+    <script>
+        $(document).ready(function myfunction() {
+            $("#btnCart").click(function myfunction() {
+                window.location.href = "/Cart.aspx";
+            });
+        });
+    </script>
+
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body data-spy="scroll" data-target="#my-navbar" background="Images\back1.jpg" style="background-size:cover;">
+    <form id="form1" runat="server">
+    <div>
+        <!--Navbar-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </button>
+
+                 <!-- Navbar Brand with logo-->
+                <a href="Home.aspx" class="navbar-brand"><i class="fa fa-paint-brush"></i> Craft Store</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                
+                <ul class="nav navbar-nav">
+
+                    <li><a href="Home.aspx"><span class="glyphicon glyphicon-home"
+					aria-hidden="true"></span> Home</a></li>
+                    <li><a href="About.aspx"><span class="glyphicon glyphicon-info-sign"
+				 aria-hidden="true"></span> About</a></li>
+                    <li><a href="ImageDisplay.aspx"><i class="fa fa-image"></i> Products</a></li>
+                    <li><a href="Contact.aspx"><span class="glyphicon glyphicon-envelope"
+				 aria-hidden="true"></span> Contact</a></li>
+                </ul>
+               
+                <ul class="nav navbar-nav navbar-right">
+                     
+                    <% if (Session["user"] != null) { %>         
+                     <li><a id="btnCart" href="Cart.aspx">
+					<i class="fa fa-shopping-cart"></i>
+					Cart<span class="badge" id="pCount" runat="server"></span></a>
+				</li>
+                     <%} %>
+
+                     <% if (Session["user"] == null) { %>
+                    <li><a id="loginButton" href="Login.aspx">
+					<span class="glyphicon glyphicon-log-in"></span>
+					Login</a></li>
+                <% } else if (Session["user"] != null){ %>
+                    <li><asp:LinkButton runat="server" id="logoutButton" OnClick="logoutSession">
+                        <span class="glyphicon glyphicon-log-out"></span>Logout
+                        </asp:LinkButton>
+                     </li>
+                <%} %>
+				<%--<li><a id="loginButton" href="Login.aspx">
+					<span class="glyphicon glyphicon-log-in"></span>
+					Login</a>
+				</li>--%>
+		</ul>
+            </div>
+
+
+        </div>
+    </nav>
+    <!--end navbar-->
+
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+      </asp:ContentPlaceHolder>
+         </form>
+       
+    <!--footer-->
+
+
+    <footer id="myFooter">
+      
+      <div class="container">
+          
+         <div class="row">
+               
+                 <div class="col-sm-3">
+                                
+                      <h2 class="logo"><a href="#"><i class="fa fa-paint-brush"></i> Craft Store</a></h2>
+                  
+                 </div>
+                   
+                     
+                 <div class="col-sm-2">
+                            
+                                    
+                           <h5><a href="home.aspx">Home</a></h5>
+                            
+                            <h5><a href="About.aspx">About us</a></h5>
+                                    
+                           <h5><a href="Signup.aspx">Sign up</a></h5>
+                                   
+                           
+                              
+                      
+                            
+                 </div>
+                           
+                
+                 <div class="col-sm-3">
+                               
+                     <h5>Location</h5>
+                               
+
+                        <p>Contact us and we'll get back to you <br />within 24 hours.</p>
+                        <p><span class="glyphicon glyphicon-map-marker"></span> Karachi, Pakistan.</p>
+                        <p><span class="glyphicon glyphicon-phone"></span> +021 1515151515</p>
+                        <p><span class="glyphicon glyphicon-envelope"></span> craftstore@abc.com</p> 
+    
+                            
+                </div>
+                            
+
+                
+                            
+
+                <div class="col-sm-4 text-center">
+                                
+                   <div class="social-networks">
+                                   
+                      <h3 >Connect Us on Facebook! </h3>
+                      <a href="https://www.facebook.com/CraftStore-1459531557448527/" class="facebook"><i class="fa fa-facebook"></i></a>
+                                   
+                               
+                   </div>
+                                
+                   
+                   <a href="Contact.aspx" id="contactButton"  class="btn" 
+						style="white-space:normal !important;">Contact us</a>
+                            
+                </div>
+          </div>
+      </div>
+        <div class="footer-copyright">
+            <p>&copy 2016 Copyright Text </p>
+        </div>
+    </footer>
+
+    </div>
+  
+
+     <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+   
+</body>
+</html>
